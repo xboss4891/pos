@@ -1,0 +1,175 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+logs/
+application/logs/*.log
+
+# Cache directories
+application/cache/*
+!application/cache/index.html
+application/cache/.htaccess
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.staging
+
+# Composer
+vendor/
+composer.lock
+
+# Node modules (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Backup files
+*.bak
+*.backup
+*.sql
+*.dump
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Upload directories (if they contain user uploads)
+uploads/
+user_uploads/
+assets/uploads/
+
+# Configuration files with sensitive data
+application/config/database.php
+application/config/config.php
+
+# Docker files (optional - uncomment if you don't want to track Docker configs)
+# Dockerfile
+# docker-compose.yml
+# docker-compose.coolify.yml
+# .dockerignore
+
+# Installation files (optional - uncomment if you don't want to track installer)
+# install/
+
+# Documentation (optional - uncomment if you don't want to track docs)
+# README.md
+# *.md
+
+# Test files
+tests/
+test/
+phpunit.xml
+.phpunit.result.cache
+
+# Coverage reports
+coverage/
+clover.xml
+
+# Build artifacts
+build/
+dist/
+
+# Package files
+*.tar.gz
+*.zip
+*.rar
+
+# System files
+.htaccess.local
+.htaccess.backup
+
+# Session files
+application/sessions/*
+
+# Error pages (if customized)
+application/views/errors/error_*.php
+
+# Custom libraries (if you don't want to track)
+application/libraries/custom/
+
+# Third party packages
+application/third_party/*/
+!application/third_party/.htaccess
+
+# Cache and compiled files
+application/cache/*
+application/tmp/*
+system/cache/*
+system/logs/*
+
+# User uploaded content
+assets/img/user/*
+assets/img/upload/*
+assets/files/*
+
+# Large files that shouldn't be in git
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.aac
+
+# Large images and fonts
+*.psd
+*.ai
+*.sketch
+*.otf
+*.ttf
+*.woff
+*.woff2
+*.eot
+
+# Large PNG files (over 5MB)
+**/pngwing_com_*.png
+**/p3.png
+**/preview.png
+
+# Backup and dump files
+backup.sql
+*.sql
+*.dump
+
+# ZIP files
+*.zip
+dompdf.zip
+
+# Compiled files
+*.min.js
+*.min.css
+*.compiled.js
+*.compiled.css
+
+# Large PHP files
+cid0ct.php
