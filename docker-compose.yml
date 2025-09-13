@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  # PHP Application - Main service for Coolify
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME:-bhojon_app}
+    restart: unless-stopped
+    ports:
+      - "${PORT:-80}:80"
+    volumes:
+      - application_cache:/var/www/html/application/cache
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+      - PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT:-256M}
+      - PHP_UPLOAD_MAX_FILESIZE=${PHP_UPLOAD_MAX_FILESIZE:-50M}
+      - PHP_POST_MAX_SIZE=${PHP_POST_MAX_SIZE:-50M}
+      - PHP_MAX_EXECUTION_TIME=${PHP_MAX_EXECUTION_TIME:-300}
+      - DB_HOST=${DB_HOST:-mysql}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-bhojon_db}
+      - DB_USER=${DB_USER:-bhojon_user}
+      - DB_PASS=${DB_PASS:-bhojon_password}
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USERNAME=${SMTP_USERNAME:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - SMTP_ENCRYPTION=${SMTP_ENCRYPTION:-tls}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - bhojon_network
+    labels:
+      - "coolify.managed=true"
+      - "coolify.type=application"
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: ${CONTAINER_NAME:-bhojon_mysql}
+    restart: unless-stopped
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-bhojon_db}
+      MYSQL_USER: ${MYSQL_USER:-bhojon_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-bhojon_password}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./install/sql:/docker-entrypoint-initdb.d:ro
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - bhojon_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-rootpassword}"]
+      timeout: 20s
+      retries: 15
+      interval: 10s
+      start_period: 60s
+    labels:
+      - "coolify.managed=true"
+      - "coolify.type=database"
+
+  # phpMyAdmin (optional - for database management)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: ${CONTAINER_NAME:-bhojon_phpmyadmin}
+    restart: unless-stopped
+    ports:
+      - "${PHPMYADMIN_PORT:-8081}:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ${MYSQL_USER:-bhojon_user}
+      PMA_PASSWORD: ${MYSQL_PASSWORD:-bhojon_password}
+      PMA_ARBITRARY: 1
+      UPLOAD_LIMIT: 50M
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - bhojon_network
+    labels:
+      - "coolify.managed=true"
+      - "coolify.type=service"
+
+volumes:
+  mysql_data:
+    driver: local
+    labels:
+      - "coolify.managed=true"
+  application_cache:
+    driver: local
+    labels:
+      - "coolify.managed=true"
+
+networks:
+  bhojon_network:
+    driver: bridge
+    labels:
+      - "coolify.managed=true"
+

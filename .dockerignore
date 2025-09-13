@@ -1,0 +1,59 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Environment files
+.env
+.env.local
+.env.production
+env.example
+
+# IDE and Editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Cache directories
+application/cache/*
+!application/cache/index.html
+
+# Vendor directory (will be installed via composer)
+vendor/
+
+# Node modules (if any)
+node_modules/
+
+# Backup files
+*.bak
+*.backup
+*.sql
+
+# Documentation
+README.md
+docs/
+
