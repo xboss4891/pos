@@ -76,10 +76,10 @@ $active_record = TRUE;//ci version 2.x
 
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => '{HOSTNAME}',
-    'username' => '{USERNAME}',
-    'password' => '{PASSWORD}',
-    'database' => '{DATABASE}',
+    'hostname' => getenv('DB_HOST') ?: 'mysql',
+    'username' => getenv('DB_USER') ?: 'bhojon_user',
+    'password' => getenv('DB_PASS') ?: 'bhojon_password',
+    'database' => getenv('DB_NAME') ?: 'bhojon_db',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
@@ -96,4 +96,3 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE
 );
- 
