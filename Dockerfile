@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libicu-dev \
     pkg-config \
+    default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions one by one to avoid conflicts
@@ -80,7 +81,16 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
     && chmod -R 777 /var/www/html/application/cache \
-    && chmod -R 777 /var/www/html/assets
+    && chmod -R 777 /var/www/html/application/modules/itemmanage/assets/images \
+    && chmod -R 777 /var/www/html/assets \
+    && mkdir -p /var/www/html/uploads/resttable \
+    && mkdir -p /var/www/html/uploads/signatures \
+    && mkdir -p /var/www/html/uploads/products \
+    && mkdir -p /var/www/html/uploads/employees \
+    && mkdir -p /var/www/html/uploads/candidates \
+    && mkdir -p /var/www/html/uploads/users \
+    && chmod -R 777 /var/www/html/uploads \
+    && ln -sf /var/www/html/uploads /var/www/html/assets/img/uploads
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader

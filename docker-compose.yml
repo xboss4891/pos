@@ -13,6 +13,7 @@ services:
     volumes:
       - application_cache:/var/www/html/application/cache
       - uploads_data:/var/www/html/uploads
+      - uploads_modules:/var/www/html/application/modules/itemmanage/assets/images
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
       - PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT:-256M}
