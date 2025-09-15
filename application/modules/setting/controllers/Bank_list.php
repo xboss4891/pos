@@ -71,7 +71,7 @@ class Bank_list extends MX_Controller {
 		$this->form_validation->set_rules('bank_name',display('bank_name'),'required|max_length[50]');
 	   $saveid=$this->session->userdata('id');
 	   $this->load->library('fileupload');
-	   $img =  $this->fileupload->do_upload('./application/modules/hrm/assets/images/', 'signature_pic');
+	   $img =  $this->fileupload->do_upload('uploads/signatures/', 'signature_pic');
 	   
 		if(!empty($this->input->post('bankid'))) {
 			$getpic=(!empty($img)?$img:$this->input->post('signature_picold'));

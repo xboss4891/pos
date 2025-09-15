@@ -14,7 +14,7 @@ class Android extends MY_Controller
         parent::__construct();
         $this->load->model('Api_v2_model');
 
-        $this->FILE_PATH = base_url('assets/img/user');
+        $this->FILE_PATH = base_url('uploads/users');
     }
 
     public function index()
@@ -90,7 +90,7 @@ class Android extends MY_Controller
             $errors = $this->form_validation->error_array();
             return $this->respondWithValidationregisError($errors);
         } else {
-            $URL      = base_url('assets/img/user/');
+            $URL      = base_url('uploads/users/');
             $scan     = scandir('application/modules/');
             $pointsys = "";
 

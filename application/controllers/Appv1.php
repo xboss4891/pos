@@ -313,11 +313,11 @@ class Appv1 extends MY_Controller
             $errors = $this->form_validation->error_array();
             return $this->respondWithValidationregisError($errors);
         } else {
-            $URL = base_url('assets/img/user/');
+            $URL = base_url('uploads/users/');
 
 // File Uplaod
             if (!empty($_FILES['UserPicture'])) {
-                $config['upload_path']   = 'assets/img/user/';
+                $config['upload_path']   = 'uploads/users/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']      = '5120';
                 $config['file_name']     = mt_rand() . '_' . time();

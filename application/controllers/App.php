@@ -15,7 +15,7 @@ class App extends MY_Controller
         $this->load->model('App_desktop_model');
         $this->load->dbforge();
         $this->load->helper('language');
-        $this->FILE_PATH = base_url('assets/img/user');
+        $this->FILE_PATH = base_url('uploads/users');
     }
 
     public function index()
@@ -90,11 +90,11 @@ class App extends MY_Controller
             $errors = $this->form_validation->error_array();
             return $this->respondWithValidationregisError($errors);
         } else {
-            $URL = base_url('assets/img/user/');
+            $URL = base_url('uploads/users/');
 
 // File Uplaod
             if (!empty($_FILES['UserPicture'])) {
-                $config['upload_path']   = 'assets/img/user/';
+                $config['upload_path']   = 'uploads/users/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']      = '5120';
                 $config['file_name']     = mt_rand() . '_' . time();

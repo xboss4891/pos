@@ -471,7 +471,7 @@ class Employees extends MX_Controller
         $this->permission->method('hrm', 'create')->redirect();
         $this->form_validation->set_rules('first_name', display('first_name'), 'max_length[50]');
         $this->load->library('fileupload');
-        $img = $this->fileupload->do_upload('./application/modules/hrm/assets/images/', 'picture');
+        $img = $this->fileupload->do_upload('uploads/employees/', 'picture');
         $this->form_validation->set_rules('c_f_name[]', 'Custom Field Name');
         $this->form_validation->set_rules('c_f_type[]', 'Custom Field Type');
         $this->form_validation->set_rules('customvalue[]', 'Custom Value');
@@ -762,7 +762,7 @@ class Employees extends MX_Controller
 
         $this->form_validation->set_rules('first_name', display('first_name'), 'max_length[50]');
         $this->load->library('fileupload');
-        $img = $this->fileupload->do_upload('./application/modules/hrm/assets/images/', 'picture');
+        $img = $this->fileupload->do_upload('uploads/employees/', 'picture');
         $this->form_validation->set_rules('c_f_name[]', 'Custom Field Name');
         $this->form_validation->set_rules('c_f_type[]', 'Custom Field Type');
         $this->form_validation->set_rules('customvalue[]', 'Custom Value');

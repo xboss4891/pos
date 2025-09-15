@@ -4,7 +4,7 @@ class MyUpload
 {
   
     // To load this model
-    // $this->fileupload->do_upload($upload_path = 'assets/images/profile/', $field_name = 'userfile');
+    // $this->fileupload->do_upload($upload_path = 'uploads/', $field_name = 'userfile');
 
     function do_upload($upload_path = null, $field_name = null) {
         if (empty($_FILES[$field_name]['name'])) {

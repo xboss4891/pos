@@ -41,7 +41,7 @@ class Candidate extends MX_Controller {
 		$this->form_validation->set_rules('present_address',display('present_address')  ,'max_length[100]');
 		$this->form_validation->set_rules('parmanent_address',display('parmanent_address')  ,'max_length[100]');
 		$this->load->library('fileupload');
-		$img =  $this->fileupload->do_upload('./application/modules/hrm/assets/images/', 'picture');
+		$img =  $this->fileupload->do_upload('uploads/candidates/', 'picture');
 		$this->form_validation->set_rules('can_id',display('can_id'));
 		$this->form_validation->set_rules('degree_name[]',display('degree_name'));
 		$this->form_validation->set_rules('university_name[]',display('university_name'));
@@ -191,7 +191,7 @@ public function cv()
 		$this->form_validation->set_rules('present_address',display('present_address')  ,'max_length[100]');
 		$this->form_validation->set_rules('parmanent_address',display('parmanent_address')  ,'max_length[100]');
 		$this->load->library('fileupload');
-		$img =  $this->fileupload->do_upload('./application/modules/hrm/assets/images/', 'picture');
+		$img =  $this->fileupload->do_upload('uploads/candidates/', 'picture');
 	
 		$this->form_validation->set_rules('degree_name[]',display('degree_name'));
 		$this->form_validation->set_rules('university_name[]',display('university_name'));

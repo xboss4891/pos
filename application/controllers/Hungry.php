@@ -1605,11 +1605,11 @@ $catid=trim($catid,',');*/
             $this->session->set_flashdata('exception', $errors);
             redirect('signup');
         } else {
-            $URL = base_url('assets/img/user/');
+            $URL = base_url('uploads/users/');
 
             // File Uplaod
             if (!empty($_FILES['UserPicture'])) {
-                $config['upload_path']   = 'assets/img/user/';
+                $config['upload_path']   = 'uploads/users/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']      = '5120';
                 $config['file_name']     = mt_rand() . '_' . time();
@@ -1631,7 +1631,7 @@ $catid=trim($catid,',');*/
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
 
-                $indata['customer_picture'] = 'assets/img/user/' . $upload_data['file_name'];
+                $indata['customer_picture'] = 'uploads/users/' . $upload_data['file_name'];
 
                 $this->image_lib->clear();
             } else {

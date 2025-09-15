@@ -59,7 +59,7 @@ class User extends MX_Controller {
 		$this->form_validation->set_rules('about', display('about'),'max_length[1000]');
 		$this->form_validation->set_rules('status', display('status'),'required|max_length[1]');
 		/*-----------------------------------*/
-        $config['upload_path']          = './assets/img/user/';
+        $config['upload_path']          = './uploads/users/';
         $config['allowed_types']        = 'gif|jpg|png'; 
 
         $this->load->library('upload', $config);

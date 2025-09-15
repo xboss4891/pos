@@ -49,7 +49,7 @@ class Setting extends MX_Controller {
 		#-------------------------------#
 		//logo upload
 		$logo = $this->fileupload->do_upload(
-			'assets/img/icons/',
+			'uploads/',
 			'logo'
 		);
 		// if logo is uploaded then resize the logo
@@ -68,7 +68,7 @@ class Setting extends MX_Controller {
 
 		//favicon upload
 		$favicon = $this->fileupload->do_upload(
-			'assets/img/icons/',
+			'uploads/',
 			'favicon'
 		);
 		// if favicon is uploaded then resize the favicon

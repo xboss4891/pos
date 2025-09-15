@@ -79,7 +79,7 @@ class Restauranttable extends MX_Controller {
 	
 		$tableimg=$data['intinfo']->table_icon;
 	   }
-		$config['upload_path']          = 'assets/img/icons/resttable/';
+		$config['upload_path']          = 'uploads/resttable/';
 		$config['allowed_types']        = 'gif|jpg|png|jpeg';
 		$config['max_size']             = 100000;
 		$this->load->library('upload', $config);
@@ -251,7 +251,7 @@ class Restauranttable extends MX_Controller {
 				  $_FILES['file']['error'] = $_FILES['file_source']['error'][$i];
 				  $_FILES['file']['size'] = $_FILES['file_source']['size'][$i];
 		
-				$config['upload_path']          = 'assets/img/icons/resttable/';
+				$config['upload_path']          = 'uploads/resttable/';
 				$config['allowed_types']        = 'gif|jpg|png|jpeg';
 				$config['max_size']             = 100000;
 				$this->load->library('upload', $config);

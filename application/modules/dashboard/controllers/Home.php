@@ -382,7 +382,7 @@ class Home extends MX_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|max_length[32]|md5');
         $this->form_validation->set_rules('about', 'About', 'max_length[1000]');
         /*-----------------------------------*/
-        $config['upload_path']   = './assets/img/user/';
+        $config['upload_path']   = './uploads/users/';
         $config['allowed_types'] = 'gif|jpg|png';
 
         $this->load->library('upload', $config);
