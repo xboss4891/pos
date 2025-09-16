@@ -31,8 +31,7 @@ services:
       - SMTP_PASSWORD=${SMTP_PASSWORD:-}
       - SMTP_ENCRYPTION=${SMTP_ENCRYPTION:-tls}
     depends_on:
-      mysql:
-        condition: service_healthy
+      - mysql
     networks:
       - bhojon_network
     labels:
@@ -57,12 +56,6 @@ services:
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - bhojon_network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-rootpassword}"]
-      timeout: 20s
-      retries: 15
-      interval: 10s
-      start_period: 60s
     labels:
       - "coolify.managed=true"
       - "coolify.type=database"
@@ -81,8 +74,7 @@ services:
       PMA_ARBITRARY: 1
       UPLOAD_LIMIT: 50M
     depends_on:
-      mysql:
-        condition: service_healthy
+      - mysql
     networks:
       - bhojon_network
     labels:
