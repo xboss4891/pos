@@ -139,7 +139,7 @@ class Item_food extends MX_Controller
 #-------------------------------#
         if ($this->form_validation->run()) {
             /****************image Upload*************/
-            $config['upload_path']   = 'uploads/products/';
+            $config['upload_path']   = 'application/modules/itemmanage/assets/images/';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $config['max_size']      = 100000;
             $this->load->library('upload', $config);
@@ -1138,7 +1138,7 @@ class Item_food extends MX_Controller
             }
 
             /****************image Upload*************/
-            $config['upload_path']   = 'uploads/products/';
+            $config['upload_path']   = 'application/modules/itemmanage/assets/images/';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $config['max_size']      = 100000;
             $this->load->library('upload', $config);
