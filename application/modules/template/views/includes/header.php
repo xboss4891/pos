@@ -21,7 +21,9 @@
     }
 </style>
 <?php
-(int) $new_version = @file_get_contents('https://update.bdtask.com/bhojon/autoupdate/update_info');
+// SECURITY: Disabled automatic version check to prevent external API calls
+// (int) $new_version = @file_get_contents('https://update.bdtask.com/bhojon/autoupdate/update_info');
+$new_version = '3.0'; // Fixed version - no external calls
 $myversion         = current_version();
 function current_version()
 {

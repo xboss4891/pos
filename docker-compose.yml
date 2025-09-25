@@ -94,6 +94,10 @@ volumes:
     driver: local
     labels:
       - "coolify.managed=true"
+  uploads_modules:
+    driver: local
+    labels:
+      - "coolify.managed=true"
 
 networks:
   bhojon_network:

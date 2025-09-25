@@ -51,13 +51,15 @@ RUN a2enmod rewrite
 # Configure Apache
 RUN echo '<Directory /var/www/html>' >> /etc/apache2/apache2.conf \
     && echo '    AllowOverride All' >> /etc/apache2/apache2.conf \
-    && echo '</Directory>' >> /etc/apache2/apache2.conf
+    && echo '</Directory>' >> /etc/apache2/apache2.conf \
+    && echo 'Timeout 600' >> /etc/apache2/apache2.conf \
+    && echo 'KeepAliveTimeout 15' >> /etc/apache2/apache2.conf
 
 # Configure PHP
-RUN echo 'memory_limit = 256M' >> /usr/local/etc/php/conf.d/docker-php-memory.ini \
+RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memory.ini \
     && echo 'upload_max_filesize = 50M' >> /usr/local/etc/php/conf.d/docker-php-uploads.ini \
     && echo 'post_max_size = 50M' >> /usr/local/etc/php/conf.d/docker-php-uploads.ini \
-    && echo 'max_execution_time = 300' >> /usr/local/etc/php/conf.d/docker-php-execution.ini \
+    && echo 'max_execution_time = 600' >> /usr/local/etc/php/conf.d/docker-php-execution.ini \
     && echo 'date.timezone = UTC' >> /usr/local/etc/php/conf.d/docker-php-timezone.ini \
     && echo 'safe_mode = Off' >> /usr/local/etc/php/conf.d/docker-php-safemode.ini \
     && echo 'allow_url_fopen = On' >> /usr/local/etc/php/conf.d/docker-php-urlfopen.ini \
@@ -81,8 +83,8 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
     && chmod -R 777 /var/www/html/application/cache \
-    && chmod -R 777 /var/www/html/application/modules/itemmanage/assets/images \
     && chmod -R 777 /var/www/html/assets \
+    && chmod -R 777 /var/www/html/application/modules/itemmanage/assets/images \
     && mkdir -p /var/www/html/uploads/resttable \
     && mkdir -p /var/www/html/uploads/signatures \
     && mkdir -p /var/www/html/uploads/products \
