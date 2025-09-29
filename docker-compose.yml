@@ -30,8 +30,8 @@ services:
       - SMTP_USERNAME=${SMTP_USERNAME:-}
       - SMTP_PASSWORD=${SMTP_PASSWORD:-}
       - SMTP_ENCRYPTION=${SMTP_ENCRYPTION:-tls}
-    depends_on:
-      - mysql
+    # depends_on:
+    #   - mysql
     networks:
       - bhojon_network
     labels:
