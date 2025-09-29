@@ -69,7 +69,9 @@ RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memory.i
     && echo 'allow_url_include = Off' >> /usr/local/etc/php/conf.d/docker-php-urlinclude.ini
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/bin --filename=composer \
+    && rm composer-setup.php
 
 # Copy application files
 COPY . /var/www/html/
