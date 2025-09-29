@@ -76,11 +76,11 @@ $active_record = TRUE;//ci version 2.x
 
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => getenv('DB_HOST') ?: '149.28.142.172',
+    'hostname' => getenv('DB_HOST') ?: 'qscgkwc0owk4gokog0sogkoo',
     'username' => getenv('DB_USER') ?: 'root',
     'password' => getenv('DB_PASS') ?: 'rfwuJuEXgSRR1vPir1ZXsTbjsgArEVtoXIp3HEP1lZ0lRokffBVPJe6tgC40EmMm',
     'database' => getenv('DB_NAME') ?: 'bhojon_db',
-    'port' => getenv('DB_PORT') ?: '3307',
+    'port' => getenv('DB_PORT') ?: '3306',
     'dbdriver' => 'mysqli',
     'ssl_verify_server_cert' => false,
     'dbprefix' => '',
