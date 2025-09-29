@@ -20,10 +20,10 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libicu-dev \
     pkg-config \
-    mysql-client \
-    mariadb-client \
     default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get install -y mysql-client mariadb-client && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions one by one to avoid conflicts
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
