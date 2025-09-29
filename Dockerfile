@@ -56,7 +56,7 @@ RUN echo '<Directory /var/www/html>' >> /etc/apache2/apache2.conf \
     && echo 'KeepAliveTimeout 15' >> /etc/apache2/apache2.conf
 
 # Configure PHP
-RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memory.ini \
+RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memory.ini \
     && echo 'upload_max_filesize = 50M' >> /usr/local/etc/php/conf.d/docker-php-uploads.ini \
     && echo 'post_max_size = 50M' >> /usr/local/etc/php/conf.d/docker-php-uploads.ini \
     && echo 'max_execution_time = 600' >> /usr/local/etc/php/conf.d/docker-php-execution.ini \
@@ -70,10 +70,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy application files
 COPY . /var/www/html/
-
-# Copy MySQL setup script
-COPY setup-mysql.sh /usr/local/bin/setup-mysql.sh
-RUN chmod +x /usr/local/bin/setup-mysql.sh
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
