@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libicu-dev \
     pkg-config \
+    mysql-client \
+    mariadb-client \
     default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
@@ -74,6 +76,7 @@ COPY . /var/www/html/
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+
 
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html \
