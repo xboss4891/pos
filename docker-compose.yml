@@ -33,7 +33,7 @@ services:
     # depends_on:
     #   - mysql
     networks:
-      - bhojon_network
+      - coolify
     labels:
       - "coolify.managed=true"
       - "coolify.type=application"
@@ -58,8 +58,5 @@ volumes:
       - "coolify.managed=true"
 
 networks:
-  bhojon_network:
-    driver: bridge
-    labels:
-      - "coolify.managed=true"
-
+  coolify:
+    external: true
