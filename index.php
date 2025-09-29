@@ -317,7 +317,7 @@ if ($db['default']['database'] == "{DATABASE}" || $db['default']['database'] == 
     exit;
 } else {
 
-    $mysqli = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database']);
+    $mysqli = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database'], $db['default']['port']);
 
     // Check connection
     if ($mysqli->connect_errno) {
