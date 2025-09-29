@@ -9,21 +9,19 @@ APP_ENV=production
 APP_DEBUG=false
 
 # Database Host (use service name in Docker)
-DB_HOST=mysql
-DB_PORT=3306
+DB_HOST=qscgkwc0owk4gokog0sogkoo
 DB_NAME=bhojon_db
-DB_USER=bhojon_user
-DB_PASS=bhojon_password123
+DB_PASS=rfwuJuEXgSRR1vPir1ZXsTbjsgArEVtoXIp3HEP1lZ0lRokffBVPJe6tgC40EmMm
+DB_PORT=3306
+DB_USER=root
+PHP_MAX_EXECUTION_TIME=600
+PHP_MEMORY_LIMIT=2048M
+PHP_POST_MAX_SIZE=100M
+PHP_UPLOAD_MAX_FILESIZE=100M
 
 # Application URLs
 APP_URL=http://localhost:8080
 ADMIN_URL=http://localhost:8080/admin
-
-# PHP Configuration
-PHP_MEMORY_LIMIT=256M
-PHP_UPLOAD_MAX_FILESIZE=50M
-PHP_POST_MAX_SIZE=50M
-PHP_MAX_EXECUTION_TIME=300
 
 # SMTP Configuration (for email functionality)
 SMTP_HOST=smtp.gmail.com
@@ -31,4 +29,5 @@ SMTP_PORT=587
 SMTP_USERNAME=xboss4891@gmail.com
 SMTP_PASSWORD="iiyd kxok fkjy qyrg"
 SMTP_ENCRYPTION=tls
+
 
