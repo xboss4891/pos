@@ -47,7 +47,6 @@ function current_version()
         return false;
     }
 }
-
 ?>
 <input name="site_url" type="hidden" value="<?php echo $soundsetting->nofitysound; ?>" id="site_url">
 
@@ -568,11 +567,11 @@ foreach ($scan as $file) {
                     <?php
 
                     if ($qrapp == 1) { ?>
-                    <li class="seelist2"> <a href="#qrorder" role="tab" data-toggle="tab" id="todayqrorder"
-                            class="home newtab kitchen-order-tab" onclick="giveselecttab(this)"><i
-                                class="fa fa-qrcode smallview"></i> <span
-                                class="responsiveview"><?php echo display('qr-order'); ?></span> </a> <a href=""
-                            class="notif2"><span class="label label-danger count2">0</span></a> </li>
+                        <li class="seelist2"> <a href="#qrorder" role="tab" data-toggle="tab" id="todayqrorder"
+                                class="home newtab kitchen-order-tab" onclick="giveselecttab(this)"><i
+                                    class="fa fa-qrcode smallview"></i> <span
+                                    class="responsiveview"><?php echo display('qr-order'); ?></span> </a> <a href=""
+                                class="notif2"><span class="label label-danger count2">0</span></a> </li>
                     <?php }
 
                     ?>
@@ -699,9 +698,9 @@ foreach ($scan as $file) {
 
                                     if ($lii >= 2) {
                                 ?>
-                                <li><a href="javascript:;" onclick="addlang(this)"
-                                        data-url="<?php echo base_url(); ?>hungry/setlangue/<?php echo $languagename->name; ?>">
-                                        <?php echo ucfirst($languagename->name); ?></a></li>
+                                        <li><a href="javascript:;" onclick="addlang(this)"
+                                                data-url="<?php echo base_url(); ?>hungry/setlangue/<?php echo $languagename->name; ?>">
+                                                <?php echo ucfirst($languagename->name); ?></a></li>
                                 <?php
                                     }
 
@@ -724,9 +723,9 @@ foreach ($scan as $file) {
 
                         if ($versioncheck->version != $new_version) {
                     ?>
-                    <a href="<?php echo base_url("dashboard/autoupdate") ?>" class="updateanimate"><i
-                            class="fa fa-warning fa-warning-bg"></i><span class="f-size-weight">Update
-                            Available</span></a>
+                            <a href="<?php echo base_url("dashboard/autoupdate") ?>" class="updateanimate"><i
+                                    class="fa fa-warning fa-warning-bg"></i><span class="f-size-weight">Update
+                                    Available</span></a>
                     <?php
                         }
                     }
@@ -841,9 +840,9 @@ foreach ($scan as $file) {
 
                                 if ($lii >= 2) {
                             ?>
-                            <li><a href="javascript:;" onclick="addlang(this)"
-                                    data-url="<?php echo base_url(); ?>hungry/setlangue/<?php echo $languagename->name; ?>">
-                                    <?php echo ucfirst($languagename->name); ?></a></li>
+                                    <li><a href="javascript:;" onclick="addlang(this)"
+                                            data-url="<?php echo base_url(); ?>hungry/setlangue/<?php echo $languagename->name; ?>">
+                                            <?php echo ucfirst($languagename->name); ?></a></li>
                             <?php
                                 }
 
@@ -885,6 +884,70 @@ foreach ($scan as $file) {
 
                                         <div class="col-md-4">
                                             <div class="leftSidebarPosMain">
+                                                <div id="nonthirdparty" class="row">
+
+
+
+                                                    <div class="col-md-6 form-group" id="tblsec">
+                                                        <label for="store_id"><?php echo display('table'); ?>
+                                                            <span class="color-red">*</span></label>
+                                                        <?php
+
+                                                        if ($possetting->tablemaping == 1) {
+                                                        ?>
+
+
+                                                            <input type="hidden" id="table_member"
+                                                                name="table_member" class="form-control" />
+
+                                                            <div class="d-flex custom-select">
+                                                              
+
+                                                                <input type="number" min="1" class="form-control" id="table_person" value="1" disabled placeholder="Seat" style="padding: 2rem; width:8rem ">
+                                                                <label onclick="showTablemodal()" style="width: 100%;" >
+                                                               
+                                                                 <?php echo form_dropdown('tableid', $tablelist, (!empty($tablelist->tableid) ? $tablelist->tableid : null), 'class="postform form-control" id="tableid"  required onchange="checktable()"') ?>
+                                                                </label>
+
+                                                            </div>
+
+                                                        <?php
+                                                        }
+
+                                                        ?>
+
+                                                        <input type="hidden" id="table_member_multi"
+                                                            name="table_member_multi" class="form-control"
+                                                            value="0" />
+                                                        <input type="hidden" id="table_member_multi_person"
+                                                            name="table_member_multi_person"
+                                                            class="form-control" value="0" />
+
+
+                                                    </div>
+                                                    <div class="col-md-6 form-group custom-select">
+                                                        <label for="store_id"><?php echo display('waiter'); ?>
+                                                            <span
+                                                                class="color-red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                        <?php $waiterkitchen = $this->session->userdata('id');
+                                                     
+                                                        echo form_dropdown('waiter', $waiterlist, (!empty($waiterkitchen) ? $waiterkitchen : 165), 'class="form-control" id="waiter" required') ?>
+                                                    </div>
+
+                                                    <?php
+                                                    ?>
+                                                    <input name="cookedtime" type="hidden" id="cookedtime" />
+                                                    <!-- <div class="col-md-3 form-group" id="cookingtime">
+                                                                <label
+                                                                    for="Cooked Time"><?php echo display('cookedtime'); ?></label>
+                                                                <input name="cookedtime" type="text"
+                                                                    class="form-control custom-form-control timepicker3"
+                                                                    id="cookedtime" placeholder="00:00:00"
+                                                                    autocomplete="off" />
+                                                            </div> -->
+
+
+                                                </div>
                                                 <!-- <div class="slimScrollDiv"> -->
                                                 <div class="row">
                                                     <div class="col-md-6 form-group">
@@ -907,63 +970,7 @@ foreach ($scan as $file) {
                                                         <?php $ctype = 1;
                                                         echo form_dropdown('ctypeid', $curtomertype, (!empty($ctype) ? $ctype : null), 'class="form-control" id="ctypeid" required') ?>
                                                     </div>
-                                                    <div id="nonthirdparty" class="col-md-12">
-                                                        <div class="row">
 
-                                                            <div class="col-md-4 form-group custom-select pl-0">
-                                                                <label for="store_id"><?php echo display('waiter'); ?>
-                                                                    <span
-                                                                        class="color-red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                                <?php $waiterkitchen = $this->session->userdata('id');
-                                                                echo form_dropdown('waiter', $waiterlist, (!empty($waiterkitchen) ? $waiterkitchen : null), 'class="form-control" id="waiter" required') ?>
-                                                            </div>
-                                                            <?php
-
-                                                            if ($possetting->tablemaping == 1) {
-                                                            ?>
-
-
-                                                            <div class="col-md-2 form-group custom-select" id="tblsecp">
-                                                                <label for="store_id" class="wpr_100 person"> <span
-                                                                        class="color-red">&nbsp;&nbsp;</span></label>
-                                                                <input name="" type="button"
-                                                                    class="btn btn-ash h-40  form-control width-100"
-                                                                    onclick="showTablemodal()" id="table_person"
-                                                                    value="<?php echo display('person'); ?>">
-                                                                <input type="hidden" id="table_member"
-                                                                    name="table_member" class="form-control" value="" />
-                                                            </div>
-                                                            <?php
-                                                            }
-
-                                                            ?>
-                                                            <div class="col-md-6 custom-select" id="tblsec">
-
-                                                                <label for="store_id"><?php echo display('table'); ?>
-                                                                    <span class="color-red">*</span></label>
-                                                                <?php echo form_dropdown('tableid', $tablelist, (!empty($tablelist->tableid) ? $tablelist->tableid : null), 'class="postform resizeselect form-control" id="tableid" required onchange="checktable()"') ?>
-                                                                <input type="hidden" id="table_member_multi"
-                                                                    name="table_member_multi" class="form-control"
-                                                                    value="0" />
-                                                                <input type="hidden" id="table_member_multi_person"
-                                                                    name="table_member_multi_person"
-                                                                    class="form-control" value="0" />
-
-                                                            </div>
-                                                            <?php
-                                                            ?>
-                                                            <input name="cookedtime" type="hidden" id="cookedtime" />
-                                                            <!-- <div class="col-md-3 form-group" id="cookingtime">
-                                                                <label
-                                                                    for="Cooked Time"><?php echo display('cookedtime'); ?></label>
-                                                                <input name="cookedtime" type="text"
-                                                                    class="form-control custom-form-control timepicker3"
-                                                                    id="cookedtime" placeholder="00:00:00"
-                                                                    autocomplete="off" />
-                                                            </div> -->
-
-                                                        </div>
-                                                    </div>
                                                     <div id="thirdparty" style="display: none;">
                                                         <div class="col-md-6 custom-select">
                                                             <div class="form-group">
@@ -1016,20 +1023,20 @@ foreach ($scan as $file) {
 
                                                             if ($cart = $this->cart->contents()) {
                                                             ?>
-                                                            <table class="table item-table border-none wpr_100 mb-0"
-                                                                border="1" id="addinvoice">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th><?php echo display('item') ?></th>
-                                                                        <th><?php echo display('varient') ?></th>
-                                                                        <th><?php echo display('price'); ?></th>
-                                                                        <th class="text-center">Qnt.</th>
-                                                                        <th><?php echo display('total'); ?></th>
-                                                                        <th><?php echo display('action'); ?></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody class="itemNumber">
-                                                                    <?php $i = 0;
+                                                                <table class="table item-table border-none wpr_100 mb-0"
+                                                                    border="1" id="addinvoice">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th><?php echo display('item') ?></th>
+                                                                            <th><?php echo display('varient') ?></th>
+                                                                            <th><?php echo display('price'); ?></th>
+                                                                            <th class="text-center">Qnt.</th>
+                                                                            <th><?php echo display('total'); ?></th>
+                                                                            <th><?php echo display('action'); ?></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="itemNumber">
+                                                                        <?php $i = 0;
                                                                         $totalamount                           = 0;
                                                                         $subtotal                              = 0;
                                                                         $ptdiscount                            = 0;
@@ -1095,9 +1102,9 @@ foreach ($scan as $file) {
                                                                             $subtotal    = $subtotal + $nittotal + $item['price'] * $item['qty'];
                                                                             $i++;
                                                                         ?>
-                                                                    <tr id="<?php echo $i; ?>">
-                                                                        <th id="product_name_MFU4E">
-                                                                            <?php echo $item['name'];
+                                                                            <tr id="<?php echo $i; ?>">
+                                                                                <th id="product_name_MFU4E">
+                                                                                    <?php echo $item['name'];
 
                                                                                     if (!empty($item['addonsid'])) {
                                                                                         echo "<br>";
@@ -1137,75 +1144,75 @@ foreach ($scan as $file) {
                                                                                     }
 
                                                                                     ?><a class="serach pl-5"
-                                                                                onclick="itemnote('<?php echo $item['rowid'] ?>','<?php echo $item['itemnote'] ?>',<?php echo $item['qty']; ?>,2)"
-                                                                                title="<?php echo display('foodnote') ?>">
-                                                                                <i class="fa fa-sticky-note"
-                                                                                    aria-hidden="true"></i> </a></th>
-                                                                        <td><?php echo $item['size']; ?></td>
-                                                                        <td width=""><?php
+                                                                                        onclick="itemnote('<?php echo $item['rowid'] ?>','<?php echo $item['itemnote'] ?>',<?php echo $item['qty']; ?>,2)"
+                                                                                        title="<?php echo display('foodnote') ?>">
+                                                                                        <i class="fa fa-sticky-note"
+                                                                                            aria-hidden="true"></i> </a></th>
+                                                                                <td><?php echo $item['size']; ?></td>
+                                                                                <td width=""><?php
 
                                                                                                 if ($currency->position == 1) {
                                                                                                     echo $currency->curr_icon;
                                                                                                 }
 
                                                                                                 ?>
-                                                                            <?php echo $item['price']; ?>
-                                                                            <?php
+                                                                                    <?php echo $item['price']; ?>
+                                                                                    <?php
 
                                                                                     if ($currency->position == 2) {
                                                                                         echo $currency->curr_icon;
                                                                                     }
 
                                                                                     ?></td>
-                                                                        <td scope="row"><a
-                                                                                class="btn btn-info btn-sm btn-incriment btnleftalign"
-                                                                                onclick="posupdatecart('<?php echo $item['rowid'] ?>',<?php echo $item['pid']; ?>,<?php echo $item['sizeid'] ?>,<?php echo $item['qty']; ?>,'add')"><i
-                                                                                    class="fa fa-plus"
-                                                                                    aria-hidden="true"></i></a> <span
-                                                                                id="productionsetting-<?php echo $item['pid'] . '-' . $item['sizeid'] ?>">
-                                                                                <?php echo $item['qty']; ?> </span>
-                                                                            <a class="btn btn-danger btn-sm btn-dicriment btnrightalign"
-                                                                                onclick="posupdatecart('<?php echo $item['rowid'] ?>',<?php echo $item['pid']; ?>,<?php echo $item['sizeid'] ?>,<?php echo $item['qty']; ?>,'del')"><i
-                                                                                    class="fa fa-minus"
-                                                                                    aria-hidden="true"></i></a>
-                                                                        </td>
-                                                                        <td width=""><?php
+                                                                                <td scope="row"><a
+                                                                                        class="btn btn-info btn-sm btn-incriment btnleftalign"
+                                                                                        onclick="posupdatecart('<?php echo $item['rowid'] ?>',<?php echo $item['pid']; ?>,<?php echo $item['sizeid'] ?>,<?php echo $item['qty']; ?>,'add')"><i
+                                                                                            class="fa fa-plus"
+                                                                                            aria-hidden="true"></i></a> <span
+                                                                                        id="productionsetting-<?php echo $item['pid'] . '-' . $item['sizeid'] ?>">
+                                                                                        <?php echo $item['qty']; ?> </span>
+                                                                                    <a class="btn btn-danger btn-sm btn-dicriment btnrightalign"
+                                                                                        onclick="posupdatecart('<?php echo $item['rowid'] ?>',<?php echo $item['pid']; ?>,<?php echo $item['sizeid'] ?>,<?php echo $item['qty']; ?>,'del')"><i
+                                                                                            class="fa fa-minus"
+                                                                                            aria-hidden="true"></i></a>
+                                                                                </td>
+                                                                                <td width=""><?php
 
                                                                                                 if ($currency->position == 1) {
                                                                                                     echo $currency->curr_icon;
                                                                                                 }
 
                                                                                                 ?>
-                                                                            <?php echo $itemprice - $mypdiscount; ?>
-                                                                            <?php
+                                                                                    <?php echo $itemprice - $mypdiscount; ?>
+                                                                                    <?php
 
                                                                                     if ($currency->position == 2) {
                                                                                         echo $currency->curr_icon;
                                                                                     }
 
                                                                                     ?></td>
-                                                                        <td width:"80"=""><a class="btn btn-sm"
-                                                                                onclick="removecart('<?php echo $item['rowid']; ?>')">
-                                                                                <svg width="16" height="18"
-                                                                                    viewBox="0 0 16 18" fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path fill-rule="evenodd"
-                                                                                        clip-rule="evenodd"
-                                                                                        d="M0 3.9975C0 3.65763 0.27552 3.38212 0.615385 3.38212H15.3846C15.7245 3.38212 16 3.65763 16 3.9975C16 4.33737 15.7245 4.61289 15.3846 4.61289H0.615385C0.27552 4.61289 0 4.33737 0 3.9975Z"
-                                                                                        fill="#D43407" />
-                                                                                    <path fill-rule="evenodd"
-                                                                                        clip-rule="evenodd"
-                                                                                        d="M13.8323 11.8018C13.5918 13.9802 13.4715 15.0694 12.8566 15.8213C12.6415 16.0842 12.3871 16.3121 12.1021 16.497C11.2873 17.0256 10.1915 17.0256 7.9998 17.0256C5.80824 17.0256 4.71244 17.0256 3.89755 16.497C3.61262 16.3121 3.35811 16.0842 3.14311 15.8213C2.5282 15.0694 2.4079 13.9801 2.16731 11.8018L1.24268 3.43009H14.757L13.8323 11.8018ZM9.64083 7.56119C9.98069 7.56119 10.2562 7.83672 10.2562 8.17658V12.2791C10.2562 12.619 9.98069 12.8945 9.64083 12.8945C9.30097 12.8945 9.02544 12.619 9.02544 12.2791V8.17658C9.02544 7.83672 9.30097 7.56119 9.64083 7.56119ZM6.97416 8.17658C6.97416 7.83672 6.69863 7.56119 6.35876 7.56119C6.0189 7.56119 5.74338 7.83672 5.74338 8.17658V12.2791C5.74338 12.619 6.0189 12.8945 6.35876 12.8945C6.69863 12.8945 6.97416 12.619 6.97416 12.2791V8.17658Z"
-                                                                                        fill="#D43407" />
-                                                                                    <path fill-rule="evenodd"
-                                                                                        clip-rule="evenodd"
-                                                                                        d="M6.6362 2.5084e-06C6.64933 2.5084e-06 6.66246 1.07247e-05 6.67567 1.07247e-05H9.32429C9.3375 1.07247e-05 9.35071 2.5084e-06 9.36375 2.5084e-06C9.79132 -3.85172e-05 10.1739 -7.13422e-05 10.4833 0.0429974C10.822 0.0901769 11.1622 0.199239 11.438 0.484835C11.7109 0.767412 11.8122 1.11081 11.8565 1.45126C11.8975 1.76724 11.8974 2.15956 11.8974 2.60498V4.01428H10.6666V2.6428C10.6666 2.14812 10.6654 1.83692 10.636 1.60972C10.6085 1.39807 10.5665 1.35409 10.5527 1.33977L10.5519 1.33897C10.5401 1.32671 10.5035 1.28846 10.3135 1.26201C10.0993 1.23217 9.80379 1.23078 9.32429 1.23078H6.67567C6.19621 1.23078 5.90071 1.23217 5.68643 1.26201C5.49646 1.28846 5.45983 1.32671 5.44808 1.33897L5.44731 1.33977C5.43348 1.35409 5.39151 1.39807 5.36403 1.60972C5.33453 1.83692 5.33331 2.14812 5.33331 2.6428V4.01428H4.10254V2.6428C4.10254 2.63015 4.10254 2.61754 4.10254 2.60497C4.10251 2.15955 4.10248 1.76724 4.1435 1.45126C4.1877 1.11081 4.28908 0.767412 4.56195 0.484835C4.83772 0.199239 5.1779 0.0901769 5.51671 0.0429974C5.82606 -7.13422e-05 6.20867 -3.85172e-05 6.6362 2.5084e-06Z"
-                                                                                        fill="#D43407" />
-                                                                                </svg>
+                                                                                <td width:"80"=""><a class="btn btn-sm"
+                                                                                        onclick="removecart('<?php echo $item['rowid']; ?>')">
+                                                                                        <svg width="16" height="18"
+                                                                                            viewBox="0 0 16 18" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <path fill-rule="evenodd"
+                                                                                                clip-rule="evenodd"
+                                                                                                d="M0 3.9975C0 3.65763 0.27552 3.38212 0.615385 3.38212H15.3846C15.7245 3.38212 16 3.65763 16 3.9975C16 4.33737 15.7245 4.61289 15.3846 4.61289H0.615385C0.27552 4.61289 0 4.33737 0 3.9975Z"
+                                                                                                fill="#D43407" />
+                                                                                            <path fill-rule="evenodd"
+                                                                                                clip-rule="evenodd"
+                                                                                                d="M13.8323 11.8018C13.5918 13.9802 13.4715 15.0694 12.8566 15.8213C12.6415 16.0842 12.3871 16.3121 12.1021 16.497C11.2873 17.0256 10.1915 17.0256 7.9998 17.0256C5.80824 17.0256 4.71244 17.0256 3.89755 16.497C3.61262 16.3121 3.35811 16.0842 3.14311 15.8213C2.5282 15.0694 2.4079 13.9801 2.16731 11.8018L1.24268 3.43009H14.757L13.8323 11.8018ZM9.64083 7.56119C9.98069 7.56119 10.2562 7.83672 10.2562 8.17658V12.2791C10.2562 12.619 9.98069 12.8945 9.64083 12.8945C9.30097 12.8945 9.02544 12.619 9.02544 12.2791V8.17658C9.02544 7.83672 9.30097 7.56119 9.64083 7.56119ZM6.97416 8.17658C6.97416 7.83672 6.69863 7.56119 6.35876 7.56119C6.0189 7.56119 5.74338 7.83672 5.74338 8.17658V12.2791C5.74338 12.619 6.0189 12.8945 6.35876 12.8945C6.69863 12.8945 6.97416 12.619 6.97416 12.2791V8.17658Z"
+                                                                                                fill="#D43407" />
+                                                                                            <path fill-rule="evenodd"
+                                                                                                clip-rule="evenodd"
+                                                                                                d="M6.6362 2.5084e-06C6.64933 2.5084e-06 6.66246 1.07247e-05 6.67567 1.07247e-05H9.32429C9.3375 1.07247e-05 9.35071 2.5084e-06 9.36375 2.5084e-06C9.79132 -3.85172e-05 10.1739 -7.13422e-05 10.4833 0.0429974C10.822 0.0901769 11.1622 0.199239 11.438 0.484835C11.7109 0.767412 11.8122 1.11081 11.8565 1.45126C11.8975 1.76724 11.8974 2.15956 11.8974 2.60498V4.01428H10.6666V2.6428C10.6666 2.14812 10.6654 1.83692 10.636 1.60972C10.6085 1.39807 10.5665 1.35409 10.5527 1.33977L10.5519 1.33897C10.5401 1.32671 10.5035 1.28846 10.3135 1.26201C10.0993 1.23217 9.80379 1.23078 9.32429 1.23078H6.67567C6.19621 1.23078 5.90071 1.23217 5.68643 1.26201C5.49646 1.28846 5.45983 1.32671 5.44808 1.33897L5.44731 1.33977C5.43348 1.35409 5.39151 1.39807 5.36403 1.60972C5.33453 1.83692 5.33331 2.14812 5.33331 2.6428V4.01428H4.10254V2.6428C4.10254 2.63015 4.10254 2.61754 4.10254 2.60497C4.10251 2.15955 4.10248 1.76724 4.1435 1.45126C4.1877 1.11081 4.28908 0.767412 4.56195 0.484835C4.83772 0.199239 5.1779 0.0901769 5.51671 0.0429974C5.82606 -7.13422e-05 6.20867 -3.85172e-05 6.6362 2.5084e-06Z"
+                                                                                                fill="#D43407" />
+                                                                                        </svg>
 
-                                                                            </a></td>
-                                                                    </tr>
-                                                                    <?php
+                                                                                    </a></td>
+                                                                            </tr>
+                                                                        <?php
                                                                         }
 
                                                                         $itemtotal = $subtotal;
@@ -1224,8 +1231,8 @@ foreach ($scan as $file) {
                                                                         $grtotal   = $itemtotal;
                                                                         $totalitem = $i;
                                                                         ?>
-                                                                </tbody>
-                                                            </table>
+                                                                    </tbody>
+                                                                </table>
                                                             <?php $pdiscount = $ptdiscount;
                                                             }
 
@@ -1416,32 +1423,32 @@ foreach ($scan as $file) {
 
                                                                 if (!empty($category->sub)) {
                                                             ?>
-                                                            <div class="listcatnew pos-category cat-nav2">
-                                                                <a class="btn listcatnew listcat2 pos-category-sub">
-                                                                    <?php echo $category->Name; ?>
-                                                                    <span class="caret"></span>
-                                                                </a>
-                                                                <ul class="dropdown-menucat dropcat display-none"
-                                                                    id="newtcat<?php echo $subcat->CategoryID ?? ''; ?>">
-                                                                    <?php
+                                                                    <div class="listcatnew pos-category cat-nav2">
+                                                                        <a class="btn listcatnew listcat2 pos-category-sub">
+                                                                            <?php echo $category->Name; ?>
+                                                                            <span class="caret"></span>
+                                                                        </a>
+                                                                        <ul class="dropdown-menucat dropcat display-none"
+                                                                            id="newtcat<?php echo $subcat->CategoryID ?? ''; ?>">
+                                                                            <?php
 
                                                                             foreach ($category->sub as $subcat) { ?>
-                                                                    <li class="lip-2 border-bottom-white"><a
-                                                                            onclick="getslcategory(<?php echo $subcat->CategoryID; ?>)"><?php echo $subcat->Name; ?></a>
-                                                                    </li>
-                                                                    <?php }
+                                                                                <li class="lip-2 border-bottom-white"><a
+                                                                                        onclick="getslcategory(<?php echo $subcat->CategoryID; ?>)"><?php echo $subcat->Name; ?></a>
+                                                                                </li>
+                                                                            <?php }
 
                                                                             ?>
-                                                                </ul>
+                                                                        </ul>
 
 
-                                                            </div>
-                                                            <?php
+                                                                    </div>
+                                                                <?php
                                                                 } else { ?>
 
-                                                            <div class="listcatnew pos-category cat-nav"
-                                                                onclick="getslcategory(<?php echo $category->CategoryID; ?>)">
-                                                                <?php echo $category->Name; ?></div>
+                                                                    <div class="listcatnew pos-category cat-nav"
+                                                                        onclick="getslcategory(<?php echo $category->CategoryID; ?>)">
+                                                                        <?php echo $category->Name; ?></div>
                                                             <?php }
                                                             }
 
@@ -1473,68 +1480,68 @@ foreach ($scan as $file) {
                                                                 }
 
                                                             ?>
-                                                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 p-6">
-                                                                <div
-                                                                    class="panel panel-bd product-panel select_product rounded-lg border-none p-10 product-h m-0 bg-white">
-                                                                    <div class="panel-body p-0">
-                                                                        <div class="pos-img-wrap">
-                                                                            <img src="<?php echo base_url(!empty($item->small_thumb) ? $item->small_thumb : 'assets/img/icons/default_pos_pro.jpg'); ?>"
-                                                                                class="img-responsive"
-                                                                                alt="<?php echo $item->ProductName; ?>">
+                                                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 p-6">
+                                                                    <div
+                                                                        class="panel panel-bd product-panel select_product rounded-lg border-none p-10 product-h m-0 bg-white">
+                                                                        <div class="panel-body p-0">
+                                                                            <div class="pos-img-wrap">
+                                                                                <img src="<?php echo base_url(!empty($item->small_thumb) ? $item->small_thumb : 'assets/img/icons/default_pos_pro.jpg'); ?>"
+                                                                                    class="img-responsive"
+                                                                                    alt="<?php echo $item->ProductName; ?>">
+                                                                            </div>
+                                                                            <input type="hidden" name="select_product_id"
+                                                                                class="select_product_id"
+                                                                                value="<?php echo $item->ProductsID; ?>">
+                                                                            <input type="hidden" name="select_totalvarient"
+                                                                                class="select_totalvarient"
+                                                                                value="<?php echo $item->totalvarient; ?>">
+                                                                            <input type="hidden" name="select_iscustomeqty"
+                                                                                class="select_iscustomeqty"
+                                                                                value="<?php echo $item->is_customqty; ?>">
+                                                                            <input type="hidden" name="select_product_size"
+                                                                                class="select_product_size"
+                                                                                value="<?php echo $item->variantid; ?>">
+                                                                            <input type="hidden"
+                                                                                name="select_product_isgroup"
+                                                                                class="select_product_isgroup"
+                                                                                value="<?php echo $item->isgroup; ?>">
+                                                                            <input type="hidden" name="select_product_cat"
+                                                                                class="select_product_cat"
+                                                                                value="<?php echo $item->CategoryID; ?>">
+                                                                            <input type="hidden" name="select_varient_name"
+                                                                                class="select_varient_name"
+                                                                                value="<?php echo $item->variantName; ?>">
+                                                                            <input type="hidden" name="select_product_name"
+                                                                                class="select_product_name"
+                                                                                value="<?php echo $item->ProductName;
+
+                                                                                        if (!empty($item->itemnotes)) {
+                                                                                            echo " -" . $item->itemnotes;
+                                                                                        }
+
+                                                                                        ?>">
+                                                                            <input type="hidden" name="select_product_price"
+                                                                                class="select_product_price"
+                                                                                value="<?php echo $item->price; ?>">
+                                                                            <input type="hidden" name="select_addons"
+                                                                                class="select_addons"
+                                                                                value="<?php echo $getadons; ?>">
                                                                         </div>
-                                                                        <input type="hidden" name="select_product_id"
-                                                                            class="select_product_id"
-                                                                            value="<?php echo $item->ProductsID; ?>">
-                                                                        <input type="hidden" name="select_totalvarient"
-                                                                            class="select_totalvarient"
-                                                                            value="<?php echo $item->totalvarient; ?>">
-                                                                        <input type="hidden" name="select_iscustomeqty"
-                                                                            class="select_iscustomeqty"
-                                                                            value="<?php echo $item->is_customqty; ?>">
-                                                                        <input type="hidden" name="select_product_size"
-                                                                            class="select_product_size"
-                                                                            value="<?php echo $item->variantid; ?>">
-                                                                        <input type="hidden"
-                                                                            name="select_product_isgroup"
-                                                                            class="select_product_isgroup"
-                                                                            value="<?php echo $item->isgroup; ?>">
-                                                                        <input type="hidden" name="select_product_cat"
-                                                                            class="select_product_cat"
-                                                                            value="<?php echo $item->CategoryID; ?>">
-                                                                        <input type="hidden" name="select_varient_name"
-                                                                            class="select_varient_name"
-                                                                            value="<?php echo $item->variantName; ?>">
-                                                                        <input type="hidden" name="select_product_name"
-                                                                            class="select_product_name"
-                                                                            value="<?php echo $item->ProductName;
+                                                                        <div class="text-center">
+                                                                            <h4 class="m-0 pt-12">
+                                                                                <?php echo $item->ProductName; ?>
 
-                                                                                                                    if (!empty($item->itemnotes)) {
-                                                                                                                        echo " -" . $item->itemnotes;
-                                                                                                                    }
-
-                                                                                                                    ?>">
-                                                                        <input type="hidden" name="select_product_price"
-                                                                            class="select_product_price"
-                                                                            value="<?php echo $item->price; ?>">
-                                                                        <input type="hidden" name="select_addons"
-                                                                            class="select_addons"
-                                                                            value="<?php echo $getadons; ?>">
-                                                                    </div>
-                                                                    <div class="text-center">
-                                                                        <h4 class="m-0 pt-12">
-                                                                            <?php echo $item->ProductName; ?>
-
-                                                                            <?php
+                                                                                <?php
 
                                                                                 if (!empty($item->itemnotes)) {
                                                                                     echo " -" . $item->itemnotes;
                                                                                 }
 
                                                                                 ?>
-                                                                        </h4>
+                                                                            </h4>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             <?php
                                                             }
 
@@ -1558,7 +1565,7 @@ foreach ($scan as $file) {
                     <div class="row" id="kitchenstatus"> </div>
                 </div>
                 <?php if ($qrapp == 1) { ?>
-                <div class="tab-pane fade" id="qrorder"> </div>
+                    <div class="tab-pane fade" id="qrorder"> </div>
                 <?php }
 
                 ?>

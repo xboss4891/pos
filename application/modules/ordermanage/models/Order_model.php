@@ -794,7 +794,7 @@ class Order_model extends CI_Model
 			$data = $this->waiterwithshift();
 		}
 
-		$list[''] = 'Select Waiter';
+		//$list[''] = 'Select Waiter';
 		if (!empty($data)) {
 			foreach ($data as $value)
 				$list[$value->emp_his_id] = $value->first_name . " " . $value->last_name;
