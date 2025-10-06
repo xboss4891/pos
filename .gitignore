@@ -66,9 +66,9 @@ user_uploads/
 assets/uploads/
 
 # Configuration files with sensitive data
-application/config/database.php
-application/config/config.php
-index.php
+# application/config/config.php
+# application/config/database.php
+# index.php
 
 # Docker files (optional - uncomment if you don't want to track Docker configs)
 # Dockerfile
