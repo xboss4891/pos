@@ -20,11 +20,11 @@ services:
       - PHP_UPLOAD_MAX_FILESIZE=${PHP_UPLOAD_MAX_FILESIZE:-100M}
       - PHP_POST_MAX_SIZE=${PHP_POST_MAX_SIZE:-100M}
       - PHP_MAX_EXECUTION_TIME=${PHP_MAX_EXECUTION_TIME:-600}
-      - DB_HOST=qscgkwc0owk4gokog0sogkoo
+      - DB_HOST=hswgk0gko800o80cwcckcc48
       - DB_PORT=3306
       - DB_NAME=bhojon_db
       - DB_USER=root
-      - DB_PASS=rfwuJuEXgSRR1vPir1ZXsTbjsgArEVtoXIp3HEP1lZ0lRokffBVPJe6tgC40EmMm
+      - DB_PASS=kNBbSWZujhpaoSiKoP4hcu0kISKLdVVQC1TBddN1lI06vd4wQ5KKkQZkGlUF326A
       - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
       - SMTP_PORT=${SMTP_PORT:-587}
       - SMTP_USERNAME=${SMTP_USERNAME:-}
