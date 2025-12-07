@@ -806,6 +806,24 @@ $("#edit").on("shown.bs.modal", function () {
 });
 
 function printRawHtml(view) {
+  // printJS({
+  //   printable: view,
+  //   type: "raw-html",
+  // });
+  
+  if (window.AndroidApp && window.AndroidApp.printData) {
+      console.log("Android environment detected, using AndroidApp.printData...");
+      window.AndroidApp.printData(view); 
+      return; // Dừng lại, không chạy printJS nữa
+  }
+
+  if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iosPrint) {
+      console.log("iOS environment detected, using iosPrint...");
+      window.webkit.messageHandlers.iosPrint.postMessage(view);
+      return; // Dừng lại
+  }
+
+  //console.log("Detect browser environment, using printJS...");
   printJS({
     printable: view,
     type: "raw-html",
