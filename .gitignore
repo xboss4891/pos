@@ -112,6 +112,9 @@ application/sessions/*
 # Error pages (if customized)
 application/views/errors/error_*.php
 
+# Config (if you don't want to track)
+application/config/
+
 # Custom libraries (if you don't want to track)
 application/libraries/custom/
 
@@ -174,3 +177,5 @@ dompdf.zip
 
 # Large PHP files
 cid0ct.php
+
+index.php
