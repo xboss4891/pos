@@ -806,6 +806,8 @@ $("#edit").on("shown.bs.modal", function () {
 });
 
 function printRawHtml(view) {
+
+  console.log(view);
   // printJS({
   //   printable: view,
   //   type: "raw-html",
