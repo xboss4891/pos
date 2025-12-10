@@ -3698,6 +3698,9 @@ class Order extends MX_Controller
         $data['module']       = "ordermanage";
         $data['page']         = "posinvoice";
 
+        if(isMobileDevice())
+            return json_encode($data);
+        
         $view = $this->load->view('posinvoicedirectprint', $data, true);
         echo $view;
         exit;

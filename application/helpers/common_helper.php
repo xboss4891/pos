@@ -1,90 +1,109 @@
 <?php
 
-if (!function_exists('http_post'))
-{
+if (!function_exists('http_post')) {
 
-    function http_post($url, $data)
-    {
+  function http_post($url, $data)
+  {
 
-        $ch = curl_init();
+    $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_POST, count($data));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_POST, count($data));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
-        $output = curl_exec($ch);
+    $output = curl_exec($ch);
 
-        curl_close($ch);
-        return $output;
+    curl_close($ch);
+    return $output;
+  }
+}
+if (!function_exists('isMobileDevice')) {
+  function isMobileDevice()
+  {
+    $userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+    // Define common mobile device patterns
+    $mobilePatterns = array(
+      '/android/i',
+      '/iphone/i',
+      '/ipad/i',
+      '/ipod/i',
+      '/blackberry/i',
+      '/iemobile/i',
+      '/opera mobile/i',
+      '/palmos/i',
+      '/webos/i',
+      '/mobile/i', // General mobile keyword
+    );
+
+    foreach ($mobilePatterns as $pattern) {
+      if (preg_match($pattern, $userAgent)) {
+        return true; // A mobile pattern was found
+      }
     }
 
+    return false; // No mobile pattern found
+  }
 }
-
-if (!function_exists('RandomPassword'))
-{
-function RandomPassword(){
-		$chars = "abcdefghijkmnopqrstuvwxyz023456789";
-		srand((double)microtime()*1000000);
-		$i = 0;
-		$pass = '' ;
-		while($i <= 7){
-			$num = rand() % 33;
-			$tmp = substr($chars, $num, 1);
-			$pass = $pass.$tmp;
-			$i++;
-		}
-		return $pass;
-	}
+if (!function_exists('RandomPassword')) {
+  function RandomPassword()
+  {
+    $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+    srand((float)microtime() * 1000000);
+    $i = 0;
+    $pass = '';
+    while ($i <= 7) {
+      $num = rand() % 33;
+      $tmp = substr($chars, $num, 1);
+      $pass = $pass . $tmp;
+      $i++;
+    }
+    return $pass;
+  }
 }
-if (!function_exists('time_elapsed'))
-{
+if (!function_exists('time_elapsed')) {
 
-    function time_elapsed($datetime, $full = false)
-    {
-        $now = new DateTime;
-        $ago = new DateTime($datetime);
-        $diff = $now->diff($ago);
+  function time_elapsed($datetime, $full = false)
+  {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
 
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
 
-        $string = array(
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-            'h' => 'hour',
-            'i' => 'minute',
-            's' => 'second',
-        );
+    $string = array(
+      'y' => 'year',
+      'm' => 'month',
+      'w' => 'week',
+      'd' => 'day',
+      'h' => 'hour',
+      'i' => 'minute',
+      's' => 'second',
+    );
 
-        foreach ($string as $k => &$v) {
-            if ($diff->$k)
-            {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-            }
-            else
-            {
-                unset($string[$k]);
-            }
-        }
-
-        if (!$full)
-        {
-            $string = array_slice($string, 0, 1);
-        }
-
-        return $string ? implode(', ', $string) . ' ago' : 'just now';
+    foreach ($string as $k => &$v) {
+      if ($diff->$k) {
+        $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+      } else {
+        unset($string[$k]);
+      }
     }
 
+    if (!$full) {
+      $string = array_slice($string, 0, 1);
+    }
+
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+  }
 }
-if (!function_exists('SubscribeEmail'))
-{
-	function SubscribeEmail($email){
-	   
-$emailcontent='<!doctype html>
+if (!function_exists('SubscribeEmail')) {
+  function SubscribeEmail($email)
+  {
+
+    $emailcontent = '<!doctype html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width">
@@ -180,7 +199,7 @@ $emailcontent='<!doctype html>
                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi '.$email.',</p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi ' . $email . ',</p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Thanks for your subscription</p>
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
                           <tbody>
@@ -208,24 +227,24 @@ $emailcontent='<!doctype html>
     </table>
   </body>
 </html>';
-	   
-	return $emailcontent;
-	}
-}
-if (!function_exists('ReservationEmail'))
-{
-	function ReservationEmail($id,$mobile=null){
-	  $ci =& get_instance();
-	  $reservesql = $ci->db->query("SELECT * FROM tblreservation where reserveid='".$id."'"); 
-    $reserveinfo= $reservesql->row();
-    $resql = $ci->db->query("SELECT * FROM customer_info where customer_id='".$reserveinfo->cid."'");	
-	  $resinfo= $resql->row();
-	  $tablesql = $ci->db->query("SELECT * FROM rest_table where tableid='".$reserveinfo->tableid."'");	
-	  $tableinfo= $tablesql->row();
-    $newdate= date('Y-m-d' , strtotime($reserveinfo->reserveday));
 
-    
-$emailcontent='<!doctype html>
+    return $emailcontent;
+  }
+}
+if (!function_exists('ReservationEmail')) {
+  function ReservationEmail($id, $mobile = null)
+  {
+    $ci = &get_instance();
+    $reservesql = $ci->db->query("SELECT * FROM tblreservation where reserveid='" . $id . "'");
+    $reserveinfo = $reservesql->row();
+    $resql = $ci->db->query("SELECT * FROM customer_info where customer_id='" . $reserveinfo->cid . "'");
+    $resinfo = $resql->row();
+    $tablesql = $ci->db->query("SELECT * FROM rest_table where tableid='" . $reserveinfo->tableid . "'");
+    $tableinfo = $tablesql->row();
+    $newdate = date('Y-m-d', strtotime($reserveinfo->reserveday));
+
+
+    $emailcontent = '<!doctype html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width">
@@ -321,10 +340,10 @@ $emailcontent='<!doctype html>
                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi '.$resinfo->customer_name.',</p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Phone:'.$mobile.'</p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Date:'.$newdate.'</p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Number Of People:'.$reserveinfo->person_capicity.'</p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi ' . $resinfo->customer_name . ',</p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Phone:' . $mobile . '</p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Date:' . $newdate . '</p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Number Of People:' . $reserveinfo->person_capicity . '</p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Your Reservation is Booked.Please inform me if anything change.\r\n Thank You</p>
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
                           <tbody>
@@ -353,60 +372,59 @@ $emailcontent='<!doctype html>
   </body>
 </html>';
 
-	return $emailcontent;
-	}
+    return $emailcontent;
+  }
 }
-if (!function_exists('SendorderEmail'))
-{
-	function SendorderEmail($orderid,$customerid){
-	   $ci =& get_instance();
-	   $ordersql = $ci->db->query("SELECT * FROM customer_order where order_id='".$orderid."'");	
-	   $orderinfo= $ordersql->row();
-       $rowdt = $ci->db->query("SELECT order_menu.*,item_foods.ProductsID,item_foods.ProductName,item_foods.ProductImage,variant.variantid,variant.variantName,variant.price FROM order_menu Left Join item_foods ON order_menu.menu_id=item_foods.ProductsID Left Join variant ON order_menu.varientid=variant.variantid where order_menu.order_id='".$orderid."'");	
-	   $oredritem= $rowdt->result();
-	   $resql = $ci->db->query("SELECT * FROM customer_info where customer_id='".$customerid."'");	
-	   $resinfo= $resql->row();
-	   $bill = $ci->db->query("SELECT * FROM bill where order_id='".$orderid."'");	
-	   $billinfo= $bill->row();
-	   $items='';
-	   $subtotal=0;
-	   foreach($oredritem as $item){
-		   $getitemin= $ci->db->query("SELECT item_foods.ProductsID,item_foods.ProductName,variant.variantid,variant.variantName,variant.price FROM item_foods Left Join variant ON item_foods.ProductsID=variant.menuid where item_foods.ProductsID='".$item->menu_id."' AND variant.variantid='".$item->varientid."'");
-		   $itemininfo= $getitemin->row();	
-		   if(!empty($item->add_on_id)){
-			   
-			   $addons=explode(",",$item->add_on_id);
-			   $addonsqtym=explode(",",$item->addonsqty);
-			     $x=0;
-				 $addonsname='';
-				 $addonsprice='';
-				 $addonsqty='';
-				 $adstotalprice='';
-				 foreach($addons as $addonsid){
-					  $getaddons = $ci->db->query("SELECT * FROM add_ons where add_on_id='".$addonsid."'");	
-	                  $adonsinfo= $getaddons->row();
-					  $addonsname.=$adonsinfo->add_on_name.',';
-					  $addonsprice.=$adonsinfo->price.',';
-					  $addonsqty.=$addonsqtym[$x].',';
-					  $adstotalprice=$adonsinfo->price*$addonsqtym[$x];
-					  $x++;
-				 }
-				  $addonsname=trim($addonsname,',');
-				  $addonsprice=trim($addonsprice,',');
-				  $addonsqty=trim($addonsqty,',');
-				  $isaddons='Addons:'.$addonsname.' - price:'.$adstotalprice;
-				  $totalp=($item->menuqty*$itemininfo->price)+$adstotalprice;
-			   }
-			else{
-				$isaddons="";
-				$adstotalprice="";
-				$totalp=$item->menuqty*$itemininfo->price;
-				}
-	   $subtotal=$subtotal+$totalp;
-	   $items.='<tr><td>'.$itemininfo->ProductName.' '.$isaddons.'</td><td>'.$itemininfo->variantName.'</td><td>'.$item->menuqty.'</td><td>'.$itemininfo->price.'</td><td>'.$totalp.'</td></tr>';
-	   }
-	   
-$emailcontent='<!doctype html>
+if (!function_exists('SendorderEmail')) {
+  function SendorderEmail($orderid, $customerid)
+  {
+    $ci = &get_instance();
+    $ordersql = $ci->db->query("SELECT * FROM customer_order where order_id='" . $orderid . "'");
+    $orderinfo = $ordersql->row();
+    $rowdt = $ci->db->query("SELECT order_menu.*,item_foods.ProductsID,item_foods.ProductName,item_foods.ProductImage,variant.variantid,variant.variantName,variant.price FROM order_menu Left Join item_foods ON order_menu.menu_id=item_foods.ProductsID Left Join variant ON order_menu.varientid=variant.variantid where order_menu.order_id='" . $orderid . "'");
+    $oredritem = $rowdt->result();
+    $resql = $ci->db->query("SELECT * FROM customer_info where customer_id='" . $customerid . "'");
+    $resinfo = $resql->row();
+    $bill = $ci->db->query("SELECT * FROM bill where order_id='" . $orderid . "'");
+    $billinfo = $bill->row();
+    $items = '';
+    $subtotal = 0;
+    foreach ($oredritem as $item) {
+      $getitemin = $ci->db->query("SELECT item_foods.ProductsID,item_foods.ProductName,variant.variantid,variant.variantName,variant.price FROM item_foods Left Join variant ON item_foods.ProductsID=variant.menuid where item_foods.ProductsID='" . $item->menu_id . "' AND variant.variantid='" . $item->varientid . "'");
+      $itemininfo = $getitemin->row();
+      if (!empty($item->add_on_id)) {
+
+        $addons = explode(",", $item->add_on_id);
+        $addonsqtym = explode(",", $item->addonsqty);
+        $x = 0;
+        $addonsname = '';
+        $addonsprice = '';
+        $addonsqty = '';
+        $adstotalprice = '';
+        foreach ($addons as $addonsid) {
+          $getaddons = $ci->db->query("SELECT * FROM add_ons where add_on_id='" . $addonsid . "'");
+          $adonsinfo = $getaddons->row();
+          $addonsname .= $adonsinfo->add_on_name . ',';
+          $addonsprice .= $adonsinfo->price . ',';
+          $addonsqty .= $addonsqtym[$x] . ',';
+          $adstotalprice = $adonsinfo->price * $addonsqtym[$x];
+          $x++;
+        }
+        $addonsname = trim($addonsname, ',');
+        $addonsprice = trim($addonsprice, ',');
+        $addonsqty = trim($addonsqty, ',');
+        $isaddons = 'Addons:' . $addonsname . ' - price:' . $adstotalprice;
+        $totalp = ($item->menuqty * $itemininfo->price) + $adstotalprice;
+      } else {
+        $isaddons = "";
+        $adstotalprice = "";
+        $totalp = $item->menuqty * $itemininfo->price;
+      }
+      $subtotal = $subtotal + $totalp;
+      $items .= '<tr><td>' . $itemininfo->ProductName . ' ' . $isaddons . '</td><td>' . $itemininfo->variantName . '</td><td>' . $item->menuqty . '</td><td>' . $itemininfo->price . '</td><td>' . $totalp . '</td></tr>';
+    }
+
+    $emailcontent = '<!doctype html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width">
@@ -502,7 +520,7 @@ $emailcontent='<!doctype html>
                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi '.$resinfo->customer_name.',</p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi ' . $resinfo->customer_name . ',</p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Thanks for Order.Below Your order Item information.</p>
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
                           <tbody>
@@ -513,26 +531,26 @@ $emailcontent='<!doctype html>
 								<td align="right">Unit Price</td>
 								<td align="right">Total Price</td>
 							</tr>
-							'.$items.'
+							' . $items . '
 							<tr>
 								<td colspan="4" align="right">Subtotal</td>
-								<td align="right">'.$subtotal.'</td>
+								<td align="right">' . $subtotal . '</td>
 							</tr>
                              <tr>
 								<td colspan="4" align="right">Vat/Tax</td>
-								<td align="right">'.$billinfo->VAT.'</td>
+								<td align="right">' . $billinfo->VAT . '</td>
 							</tr>
                             <tr>
 								<td colspan="4" align="right">Discount</td>
-								<td align="right">'.$billinfo->discount.'</td>
+								<td align="right">' . $billinfo->discount . '</td>
 							</tr>
                             <tr>
 								<td colspan="4" align="right">Service charge</td>
-								<td align="right">'.$billinfo->service_charge.'</td>
+								<td align="right">' . $billinfo->service_charge . '</td>
 							</tr>
                             <tr>
 								<td colspan="4" align="right">Grand Total</td>
-								<td align="right">'.$orderinfo->totalamount.'</td>
+								<td align="right">' . $orderinfo->totalamount . '</td>
 							</tr>
                           </tbody>
                         </table>
@@ -557,33 +575,31 @@ $emailcontent='<!doctype html>
     </table>
   </body>
 </html>';
-	   
-	return $emailcontent;
-	}
-}
-if (!function_exists('SendSMS'))
-{
 
-    function SendSMS($Phone, $SMS)
-    {
-				// Login Info
-				
-    }
-
+    return $emailcontent;
+  }
 }
-if (!function_exists('generateRandomStr'))
-{
-function generateRandomStr($length = 4) {
-        $UpperStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $LowerStr = "abcdefghijklmnopqrstuvwxyz";
-        $numbers = "0123456789";
-        
-        $characters = $numbers;
-        $charactersLength = strlen($characters);
-        $randomStr = null;
-        for ($i = 0; $i < $length; $i++) {
-            $randomStr .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomStr;
+if (!function_exists('SendSMS')) {
+
+  function SendSMS($Phone, $SMS)
+  {
+    // Login Info
+
+  }
+}
+if (!function_exists('generateRandomStr')) {
+  function generateRandomStr($length = 4)
+  {
+    $UpperStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $LowerStr = "abcdefghijklmnopqrstuvwxyz";
+    $numbers = "0123456789";
+
+    $characters = $numbers;
+    $charactersLength = strlen($characters);
+    $randomStr = null;
+    for ($i = 0; $i < $length; $i++) {
+      $randomStr .= $characters[rand(0, $charactersLength - 1)];
     }
+    return $randomStr;
+  }
 }
