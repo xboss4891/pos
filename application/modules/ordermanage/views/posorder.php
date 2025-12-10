@@ -1614,6 +1614,7 @@ foreach ($scan1 as $file) {
 
 //$this->load->view('include/pos_script');
 ?>
+<iframe id="print_view" class="display-none"></iframe>
 
 <script src="<?php echo base_url('ordermanage/order/possettingjs') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('ordermanage/order/quickorderjs') ?>" type="text/javascript"></script>

@@ -793,7 +793,7 @@ $(document).on("change", "#product_name", function () {
 });
 /*$(document).on("keypress", '#varientinfo', function(e){
     if(e.which == 13){
-		$('#itemqty_1').trigger(click);	    
+    $('#itemqty_1').trigger(click);	    
     }
 });*/
 $(document).on("keypress", "#itemqty_1", function (e) {
@@ -807,29 +807,35 @@ $("#edit").on("shown.bs.modal", function () {
 
 function printRawHtml(view) {
 
-  console.log(view);
-  // printJS({
-  //   printable: view,
-  //   type: "raw-html",
-  // });
-  
-  if (window.AndroidApp && window.AndroidApp.printData) {
-      console.log("Android environment detected, using AndroidApp.printData...");
-      window.AndroidApp.printData(view); 
-      return; // Dừng lại, không chạy printJS nữa
-  }
+  var iframe = document.getElementById('print_view');
+  iframe.setAttribute("srcdoc", view);
+  uid = Math.floor(Date.now() / 1000) + "_" + Math.floor(Math.random() * 1000);
+  window.location.href = "#action:print_"+uid;
+  // $("#invoice_data").val(view);
+  // // printJS({
+  // //   printable: view,
+  // //   type: "raw-html",
+  // // });
 
-  if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iosPrint) {
-      console.log("iOS environment detected, using iosPrint...");
-      window.webkit.messageHandlers.iosPrint.postMessage(view);
-      return; // Dừng lại
-  }
+  // if (window.AndroidApp && window.AndroidApp.printData) {
+  //     console.log("Android environment detected, using AndroidApp.printData...");
+  //     window.AndroidApp.printData(view); 
+  //     return; // Dừng lại, không chạy printJS nữa
+  // }
+
+  // if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iosPrint) {
+  //     console.log("iOS environment detected, using iosPrint...");
+  //     window.webkit.messageHandlers.iosPrint.postMessage(view);
+  //     return; // Dừng lại
+  // }
 
   //console.log("Detect browser environment, using printJS...");
   printJS({
     printable: view,
     type: "raw-html",
   });
+
+
 }
 
 function placeorder() {
@@ -996,7 +1002,7 @@ function placeorder() {
               confirmButtonText: lang.yes + ", " + lang.cancel + "!",
               closeOnConfirm: true,
             },
-            function () {}
+            function () { }
           );
         } else {
           if (basicinfo.printtype == 1) {
@@ -1010,7 +1016,7 @@ function placeorder() {
                 confirmButtonText: "Done",
                 closeOnConfirm: true,
               },
-              function () {}
+              function () { }
             );
           } else {
             swal(
@@ -1260,7 +1266,7 @@ function quickorder() {
               confirmButtonText: lang.yes + ", " + lang.cancel + "!",
               closeOnConfirm: true,
             },
-            function () {}
+            function () { }
           );
         } else {
           swal(
@@ -1387,7 +1393,7 @@ function postupdateorder_ajax() {
         prevsltab.trigger("click");
       }, 300);
     },
-    error: function (a) {},
+    error: function (a) { },
   });
 }
 
@@ -2225,7 +2231,7 @@ function getAjaxView(
     url: url,
     type: method,
     data: fulldata,
-    beforeSend: function (xhr) {},
+    beforeSend: function (xhr) { },
     success: function (result) {
       if (callback) {
         callback(result);
@@ -2233,7 +2239,7 @@ function getAjaxView(
       }
       $("#" + ajaxclass).html(result);
     },
-    error: function (a) {},
+    error: function (a) { },
   });
   return false;
 }
@@ -2603,5 +2609,5 @@ function closeandprintcashregister() {
 
 $(".lang_box").on("click", function (event) {
   var submenu = $(this).next(".lang_options");
-  submenu.slideToggle(400, function () {});
+  submenu.slideToggle(400, function () { });
 });
