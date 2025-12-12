@@ -3700,7 +3700,7 @@ class Order extends MX_Controller
 
         $resview = isMobileDevice() ? 'posinvoicedirectprint_json' : 'posinvoicedirectprint';
         
-        //$resview = 'posinvoicedirectprint_json';
+        // $resview = 'posinvoicedirectprint_json';
         // if(isMobileDevice())
         //     return json_encode($data);
         
