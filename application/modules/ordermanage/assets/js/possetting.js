@@ -810,7 +810,8 @@ function printRawHtml(view) {
   var iframe = document.getElementById('print_view');
   iframe.setAttribute("srcdoc", view);
   uid = Math.floor(Date.now() / 1000) + "_" + Math.floor(Math.random() * 1000);
-  window.location.href = "#action:print_"+uid;
+  window.location.href = "#action:print_" + uid;
+
   // $("#invoice_data").val(view);
   // // printJS({
   // //   printable: view,
@@ -830,11 +831,12 @@ function printRawHtml(view) {
   // }
 
   //console.log("Detect browser environment, using printJS...");
-  printJS({
-    printable: view,
-    type: "raw-html",
-  });
-
+  if (!isMobile) {
+    printJS({
+      printable: view,
+      type: "raw-html",
+    });
+  }
 
 }
 

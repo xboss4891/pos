@@ -4,6 +4,9 @@
 <script src="<?php echo base_url('application/modules/ordermanage/assets/js/postop.js?v=1.2'); ?>"
     type="text/javascript">
 </script>
+<script>
+    isMobile = <?php echo isMobileDevice() ? 'true' :'false'  ?>;
+</script>
 <?php
 // SECURITY: Disabled automatic version check to prevent external API calls
 // (int) $new_version = @file_get_contents('https://update.bdtask.com/bhojon/autoupdate/update_info');
