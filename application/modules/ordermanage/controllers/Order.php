@@ -2067,7 +2067,11 @@ class Order extends MX_Controller
         $data['allcancelitem'] = $this->order_model->customercancelkitchen($orderid, $kid);
         $data['module']        = "ordermanage";
         $data['page']          = "postoken3";
-        $this->load->view('postoken3', $data);
+        
+
+        $resview = isMobileDevice() ? 'postoken3_json' : 'postoken3';
+        $resview = 'postoken3_json';
+        $this->load->view($resview, $data);
     }
 
     public function onlinellorder()
@@ -3700,7 +3704,7 @@ class Order extends MX_Controller
 
         $resview = isMobileDevice() ? 'posinvoicedirectprint_json' : 'posinvoicedirectprint';
         
-        // $resview = 'posinvoicedirectprint_json';
+        //$resview = 'posinvoicedirectprint_json';
         // if(isMobileDevice())
         //     return json_encode($data);
         
@@ -3779,7 +3783,10 @@ class Order extends MX_Controller
         $data['module'] = "ordermanage";
         $data['page']   = "posinvoice";
 
-        echo $view = $this->load->view('postoken', $data, true);
+        $resview = isMobileDevice() ? 'postoken_json' : 'postoken';
+        //$resview = 'postoken_json';
+        
+        echo $view = $this->load->view($resview, $data, true);
         //return $view;
 
     }
@@ -3815,7 +3822,10 @@ class Order extends MX_Controller
         $data['module'] = "ordermanage";
         $data['page']   = "posinvoice";
 
-        echo $view = $this->load->view('postoken', $data, true);
+        $resview = isMobileDevice() ? 'postoken_json' : 'postoken';
+        //$resview = 'postoken_json';
+        
+        echo $view = $this->load->view($resview, $data, true);
         //return $view;
 
     }
@@ -3852,7 +3862,10 @@ class Order extends MX_Controller
         $data['module'] = "ordermanage";
         $data['page']   = "posinvoice";
 
-        $view = $this->load->view('postoken', $data);
+        $resview = isMobileDevice() ? 'postoken_json' : 'postoken';
+        //$resview = 'postoken_json';
+        
+        $view = $this->load->view($resview, $data, true);
         echo $view;
         $this->db->where('ordid', $id)->delete('tbl_updateitems');
         $updatetData = [
