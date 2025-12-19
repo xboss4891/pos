@@ -7,6 +7,7 @@ $response = [
     'customer_name' => isset($customerinfo->customer_name) ? $customerinfo->customer_name : '',
     'table_name'    => isset($tableinfo->tablename) ? $tableinfo->tablename : '',
     'order_number'  => isset($orderinfo->order_id) ? $orderinfo->order_id : '',
+    'view'          => 'place_order',
     'items'         => []
 ];
 

@@ -126,6 +126,7 @@ if (isset($billinfo->bill_status) && $billinfo->bill_status == 1) {
 
 $responseData = [
     'status' => 'success',
+    'view'   => 'invoice',
     'meta'   => [
         'generated_at' => date('Y-m-d H:i:s'),
         'currency'     => [

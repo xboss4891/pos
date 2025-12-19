@@ -5,7 +5,7 @@
     type="text/javascript">
 </script>
 <script>
-    isMobile = <?php echo isMobileDevice() ? 'true' :'false'  ?>;
+    isMobile = <?php echo isMobileDevice() ? 'true' : 'false'  ?>;
 </script>
 <?php
 // SECURITY: Disabled automatic version check to prevent external API calls
@@ -584,10 +584,12 @@ foreach ($scan as $file) {
                                 class="responsiveview"><?php echo display('onlineord'); ?></span> </a> <a href=""
                             class="notif order-notify"><span class="label label-danger count order-label">02</span></a>
                     </li>
-                    <li> <a href="#messages" role="tab" data-toggle="tab" class="torder newtab today-order-tab"
-                            id="todayorder" onclick="giveselecttab(this)"><i class="fa fa-first-order smallview"></i>
-                            <span class="responsiveview"><?php echo display('tdayorder'); ?></span> </a> </li>
+                    <?php if (isMobileDevice()) { ?>
 
+                        <li> <a href="#messages" role="tab" data-toggle="tab" class="torder newtab today-order-tab"
+                                id="todayorder" onclick="giveselecttab(this)"><i class="fa fa-first-order smallview"></i>
+                                <span class="responsiveview"><?php echo display('tdayorder'); ?></span> </a> </li>
+                    <?php } ?>
                     <li class="mobiletag"><a href="javascript:;" class="btn bg-soft-blue" onclick="closeopenresister()"
                             role="button"><i class="fa fa-window-close"></i></a></li>
                     <li class="mobiletag"><a href="#" class="bg-soft-red"><i
@@ -904,12 +906,12 @@ foreach ($scan as $file) {
                                                                 name="table_member" class="form-control" />
 
                                                             <div class="d-flex custom-select">
-                                                              
+
 
                                                                 <input type="number" min="1" class="form-control" id="table_person" value="1" disabled placeholder="Seat" style="padding: 2rem; width:8rem ">
-                                                                <label onclick="showTablemodal()" style="width: 100%;" >
-                                                               
-                                                                 <?php echo form_dropdown('tableid', $tablelist, (!empty($tablelist->tableid) ? $tablelist->tableid : null), 'class="postform form-control" id="tableid"  required onchange="checktable()"') ?>
+                                                                <label onclick="showTablemodal()" style="width: 100%;">
+
+                                                                    <?php echo form_dropdown('tableid', $tablelist, (!empty($tablelist->tableid) ? $tablelist->tableid : null), 'class="postform form-control" id="tableid"  required onchange="checktable()"') ?>
                                                                 </label>
 
                                                             </div>
@@ -933,7 +935,7 @@ foreach ($scan as $file) {
                                                             <span
                                                                 class="color-red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                                         <?php $waiterkitchen = $this->session->userdata('id');
-                                                     
+
                                                         echo form_dropdown('waiter', $waiterlist, (!empty($waiterkitchen) ? $waiterkitchen : 165), 'class="form-control" id="waiter" required') ?>
                                                     </div>
 
